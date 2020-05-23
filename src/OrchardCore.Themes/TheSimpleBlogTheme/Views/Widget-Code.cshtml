@@ -1,0 +1,8 @@
+
+<style asp-src="~/TheSimpleBlogTheme/vendor/prism/prism.css"></style>
+
+<div class="margin-top-40 margin-bottom-40">
+    <pre><code class="language-@Model.ContentItem.Content.Code.Language.Text line-numbers">@Model.ContentItem.Content.Code.Content.Value</code></pre>
+</div>
+
+<script asp-src="~/TheSimpleBlogTheme/vendor/prism/prism.js" at="Foot"></script>

@@ -1,0 +1,62 @@
+@using OrchardCore.Themes.TheSimpleBlogTheme
+
+@{
+    var widgets = Model.ContentItem.Content.FlowPart.Widgets;
+    dynamic paragraphWidget = null;
+    dynamic imageWidget = null;
+    dynamic currentWidget = null;
+    int index = 0;
+    while ((imageWidget == null || paragraphWidget == null) && index < widgets.Count)
+    {
+        currentWidget = widgets[index];
+        switch ((string)currentWidget["ContentType"])
+        {
+            case "Paragraph":
+                if (paragraphWidget == null)
+                {
+                    paragraphWidget = currentWidget;
+                }
+                break;
+            case "Image":
+                if (imageWidget == null)
+                {
+                    imageWidget = currentWidget;
+                }
+                break;
+            default:
+                break;
+        }
+        index++;
+    }
+}
+
+<div class="col-md-12 blog-post">
+    @if (imageWidget != null)
+    {
+        <div class="post-image">
+            <img src="@Orchard.AssetUrl((string)imageWidget.Image.Image.Paths.First)"
+                 alt="@imageWidget.Image.Caption.Text">
+        </div>
+    }
+    <div class="post-title">
+        <a href="~/@Model.ContentItem.Content.AutoroutePart.Path">
+            <h2>@Model.ContentItem.Content.TitlePart.Title</h2>
+        </a>
+    </div>
+    <div class="post-info">
+        <span>
+            @Model.ContentItem.PublishedUtc?.ToString("MMMM dd, yyyy") / In
+            <a href="category.html">@Model.ContentItem.Content.Post.Tags.TagNames.First</a>
+        </span>
+    </div>
+    @if (paragraphWidget != null)
+    {
+        string paragraph = (string)paragraphWidget.Paragraph.Content.Html;
+        int max = 250;
+        <p>@Html.Raw(paragraph.Length > max ? paragraph.TruncateHtml(max, "...") : paragraph)</p>
+    }
+    <a href="~/@Model.ContentItem.Content.AutoroutePart.Path"
+       class="button button-style button-anim fa fa-long-arrow-right">
+        <span>Read More</span>
+    </a>
+</div>

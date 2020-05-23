@@ -1,0 +1,26 @@
+@{
+    string cssClass;
+    dynamic listItems = Model.ContentItem.Content.Listitems;
+    string style = listItems.Style.Text;
+    switch (style.ToLower())
+    {
+        case "circleunordered":
+            cssClass = "list-style-2";
+            break;
+        case "discunordered":
+            cssClass = "";
+            break;
+        default:
+            cssClass = "list-style";
+            break;
+    }
+}
+
+<div class="list @cssClass margin-top-40">
+    <ul>
+        @foreach (var liItem in listItems.Values.Data)
+        {
+            <li>@liItem</li>
+        }
+    </ul>
+</div>

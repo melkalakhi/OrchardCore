@@ -1,0 +1,37 @@
+<div class="video-box margin-top-40 margin-bottom-40">
+    <div class="video-tutorial">
+        <a class="video-popup" href="@Model.ContentItem.Content.Video.Content.Url"
+           title="@Model.ContentItem.Content.Video.Content.Text">
+            <img src="@Orchard.AssetUrl((string)Model.ContentItem.Content.Video.Image.Paths.First)"
+                 alt="@Model.ContentItem.Content.Video.Caption.Text">
+        </a>
+    </div>
+    <p>@Model.ContentItem.Content.TitlePart.Title</p>
+
+</div>
+
+<style asp-name="thesimpleblogtheme-vendor-magnific-popup-css"></style>
+
+<script asp-name="thesimpleblogtheme-vendor-magnific-popup-js" at="Foot" depends-on="thesimpleblogtheme-vendor-jquery"></script>
+<script at="Foot">
+
+    (function ($) {
+        'use strict';
+
+        jQuery(document).ready(function () {
+
+            /* Video and Google Map Popup */
+
+            $('.video-popup').magnificPopup({
+                disableOn: 700,
+                type: 'iframe',
+                removalDelay: 160,
+                preloader: false,
+                fixedContentPos: false
+            });
+
+        });
+
+    })(jQuery);
+
+</script>

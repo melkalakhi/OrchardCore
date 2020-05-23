@@ -1,0 +1,8 @@
+<div class="post-image margin-top-40 margin-bottom-40 @String.Join(" ", Model.Classes)">
+    <img src="@Orchard.AssetUrl((string)Model.ContentItem.Content.Image.Image.Paths.First)"
+         alt="@Model.ContentItem.Content.Image.Caption.Text">
+    @if (!string.IsNullOrWhiteSpace((string)Model.ContentItem.Content.Image.Source.Url))
+    {
+        <p>Image source from <a href="@Model.ContentItem.Content.Image.Source.Url" target="_blank">@Model.ContentItem.Content.Image.Source.Text</a></p>
+    }
+</div>

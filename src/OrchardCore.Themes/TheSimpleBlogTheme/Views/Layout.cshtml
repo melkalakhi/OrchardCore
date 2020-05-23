@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="@Orchard.CultureName()">
+
+<head>
+
+    <!-- Meta Tag -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <resources type="Meta" />
+
+    <title>@RenderTitleSegments(Site.SiteName, "before")</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="TheSimpleBlogTheme/images/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="TheSimpleBlogTheme/images/favicon/apple-touch-icon.png">
+
+    <!--Scripts-->
+    <script asp-name="thesimpleblogtheme-vendor-jquery" at="Foot"></script>
+    <script asp-name="thesimpleblogtheme-vendor-bootstrap-js" at="Foot"></script>
+    <script asp-name="thesimpleblogtheme-vendor-jquery-ajaxchimp" at="Foot" depends-on="thesimpleblogtheme-vendor-jquery"></script>
+
+    <script asp-src="~/TheSimpleBlogTheme/js/scripts.js" at="Foot"></script>
+
+    <!--Styles-->
+    <style asp-name="thesimpleblogtheme-vendor-bootstrap-css"></style>
+    <style asp-name="thesimpleblogtheme-vendor-font-awesome"></style>
+    <style asp-name="thesimpleblogtheme-vendor-simple-line-icons"></style>
+
+    <style asp-src="~/TheSimpleBlogTheme/css/style.css"></style>
+
+    <!-- Google Web Fonts  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700|Merriweather">
+
+
+    <!-- HTML5 shiv and Respond.js support IE8 or Older for HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <resources type="HeadLink" />
+    <resources type="Stylesheet" />
+    <resources type="HeadScript" />
+
+    @await RenderSectionAsync("HeadMeta", required: false)
+
+</head>
+
+<body dir="@Orchard.CultureDir()">
+
+    <!-- Preloader Start -->
+    <partial name="_Preloader" />
+    <!-- Preloader End -->
+    <!-- Popup Search Box Start -->
+    <partial name="_SearchBox" />
+    <!-- Popup Search Box End -->
+
+    <div id="main">
+        <div class="container">
+            <div class="row">
+
+                <!-- Content Start -->
+                <div class="col-md-10 col-md-offset-1">
+
+                    <div class="col-md-12 page-body">
+                        <div class="row">
+
+                            @await RenderSectionAsync("Messages", required: false)
+
+                            <partial name="_Subtitle" />
+
+                            <div class="col-md-12 content-page">
+                                @await RenderBodyAsync()
+                            </div>
+                        </div>
+
+                        <!-- Subscribe Form Start -->
+                        <partial name="_SubscribeForm" />
+                        <!-- Subscribe Form End -->
+
+                    </div>
+
+                    <!-- Footer Start -->
+                    <partial name="_Footer" />
+                    <!-- Footer End -->
+
+                </div>
+                <!-- Content End -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Start -->
+    <a href="#" class="scroll-to-top"><i class="fa fa-long-arrow-up"></i></a>
+    <!-- Back to Top End -->
+
+    <resources type="FootScript" />
+
+</body>
+</html>
